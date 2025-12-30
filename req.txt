@@ -1,0 +1,212 @@
+Perfect — this is **exactly** how you should talk to Cursor 👍
+I’ll give you a **clear, structured prompt / design document** you can paste directly into Cursor so it can generate the app end-to-end.
+
+This is **Option B: Simple Web App**, fully automated **price tracking + alerts** (NOT auto-selling, which is unsafe).
+
+You can copy **everything below** and paste it into Cursor as one prompt.
+
+---
+
+# 📄 Cursor Prompt — Polymarket Auto Price Alert Web App
+
+## Goal
+
+Build a **simple personal web app** that automatically tracks Polymarket market prices and sends alerts when predefined price or PnL thresholds are hit, so I don’t need to manually check Polymarket all the time.
+
+This app is **for personal use only**, free-tier friendly, and does **NOT** execute trades or access wallets.
+
+---
+
+## Core Features (MVP)
+
+### 1. Market Tracking
+
+* Track multiple Polymarket markets
+* Each tracked item should include:
+
+  * Market ID or market URL
+  * Outcome (YES / NO / specific option if multi-outcome)
+  * Entry price
+  * Quantity (shares)
+  * Take-profit price
+  * Stop-loss price
+
+---
+
+### 2. Automatic Price Fetching
+
+* Fetch live prices from **Polymarket public API**
+* Poll prices every **5–15 minutes**
+* Store latest price locally (in memory or simple storage)
+
+---
+
+### 3. Alert System (Fully Automated)
+
+* When price **≥ take-profit**, send alert
+* When price **≤ stop-loss**, send alert
+* Optional:
+
+  * Alert on % PnL (e.g., +40%, −25%)
+
+Alerts should be sent via:
+
+* Email (mandatory)
+* Optional: Telegram bot (nice to have)
+
+---
+
+### 4. Dashboard UI
+
+Simple, clean UI showing:
+
+* List of tracked markets
+* Current price
+* Entry price
+* Unrealized PnL (% and $)
+* Status:
+
+  * 🟢 Normal
+  * 🟡 Near target
+  * 🔴 Alert triggered
+
+User should be able to:
+
+* Add a new market
+* Edit thresholds
+* Remove a market
+
+---
+
+## Automation Requirements
+
+* Price polling must run automatically
+* Alerts must trigger **without manual action**
+* No need for user to be logged in continuously
+* No cron job requiring paid infrastructure
+
+---
+
+## Tech Stack (Free Only)
+
+### Frontend
+
+* Next.js (React)
+* Simple Tailwind or basic CSS
+* Deployed on **Vercel (free)**
+
+### Backend / Logic
+
+* Serverless API routes in Next.js
+* In-memory storage or simple JSON (no paid DB)
+* Scheduled polling using:
+
+  * Vercel cron (if available) OR
+  * Client-side polling + background tab
+
+### Alerts
+
+* Email via:
+
+  * EmailJS OR
+  * Resend free tier OR
+  * Nodemailer with Gmail SMTP
+
+(Optional)
+
+* Telegram Bot API (free)
+
+---
+
+## Important Constraints (DO NOT VIOLATE)
+
+* ❌ Do NOT connect wallets
+* ❌ Do NOT place trades
+* ❌ Do NOT sign transactions
+* ❌ Do NOT automate buying/selling
+
+This app is **alerts only**, not a trading bot.
+
+---
+
+## Polymarket-Specific Logic
+
+* Use Polymarket public endpoints
+* Handle:
+
+  * YES / NO markets
+  * Multi-outcome markets (3+ outcomes)
+* Market prices are in **USD between 0 and 1**
+* Resolution logic is NOT needed
+
+---
+
+## UX Expectations
+
+* Very minimal
+* Built for one user
+* No authentication required (or simple local-only setup)
+* Works on desktop and mobile
+* Clear visual PnL feedback
+
+---
+
+## Bonus Features (Optional)
+
+If time permits:
+
+* Global settings:
+
+  * Default profit %
+  * Default stop %
+* Sound alert toggle
+* Dark mode
+* Export/import tracked markets as JSON
+
+---
+
+## Output Expectations
+
+Cursor should:
+
+1. Generate the full project structure
+2. Implement API price fetching
+3. Implement alert logic
+4. Build basic dashboard UI
+5. Provide instructions to deploy on Vercel
+
+---
+
+## Success Criteria
+
+* I can add a Polymarket market
+* I stop checking Polymarket manually
+* I receive alerts when price hits my targets
+* App runs fully on free tiers
+
+---
+
+### Final Instruction to Cursor
+
+> Build this as a **clean MVP**, prioritize correctness and simplicity over polish.
+> Assume this is for a technically curious user, not production scale.
+
+---
+
+## 🔥 Important Reality Check (so you’re aligned)
+
+Even with “full automation”:
+
+* You still **manually sell** on Polymarket
+* This is intentional and safer
+* This is how real traders actually operate
+
+---
+
+If you want next:
+
+* I can **simplify this further** for Cursor (even more direct)
+* Or help you **review Cursor’s output**
+* Or turn this into a **Telegram-only bot** instead
+
+Just tell me what you want to do next.
